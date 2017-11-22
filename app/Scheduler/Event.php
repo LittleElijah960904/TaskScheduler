@@ -9,6 +9,7 @@ use App\Scheduler\Frequencies;
 abstract class Event
 {
     use Frequencies;
+    
     // default expression * * * * *
     public $expression = '* * * * *';
 
