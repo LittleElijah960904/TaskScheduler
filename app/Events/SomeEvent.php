@@ -8,6 +8,6 @@ class SomeEvent extends Event
 {
     public function handle()
     {
-        var_dump('works');
+        var_dump($this->expression);
     }
 }
