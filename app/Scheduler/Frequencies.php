@@ -27,6 +27,31 @@ trait Frequencies
       return $this->replaceIntoExpression(1,'*/30');
     }
 
+    public function hourlyAt($minute = 1)
+    {
+      return $this->replaceIntoExpression(1, $minute);
+    }
+
+    public function hourly()
+    {
+      return $this->hourlyAt(1);
+    }
+
+    public function dailyAt($hour = 1, $minute = 1)
+    {
+      return $this->replaceIntoExpression(1, [$minute, $hour]);
+    }
+
+    public function daily()
+    {
+      return $this->dailyAt(0,0);
+    }
+
+    public function twiceDaily($firstHour = 1, $lastHour = 12)
+    {
+      return $this->replaceIntoExpression(1, [0, "{$firstHour},{$lastHour}"]);
+    }
+
     public function replaceIntoExpression($postion, $value)
     {
         $value = (array) $value;

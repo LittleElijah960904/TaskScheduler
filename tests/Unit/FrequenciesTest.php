@@ -90,6 +90,76 @@ class FrequenciesTest extends TestCase
         $this->assertEquals($frequencies->expression,'*/30 * * * *');
     }
 
+    /** @test */
+    public function can_set_hourly_at()
+    {
+        $frequencies = $this->frequencies();
+
+        $frequencies->hourlyAt(45);
+
+        $this->assertEquals($frequencies->expression,'45 * * * *');
+    }
+
+    /** @test */
+    public function can_set_hourly()
+    {
+        $frequencies = $this->frequencies();
+
+        $frequencies->hourly();
+
+        $this->assertEquals($frequencies->expression,'1 * * * *');
+    }
+
+    /** @test */
+    public function can_set_daily_at()
+    {
+        $frequencies = $this->frequencies();
+
+        $frequencies->dailyAt(12, 30);
+
+        $this->assertEquals($frequencies->expression,'30 12 * * *');
+    }
+
+    /** @test */
+    public function can_set_daily()
+    {
+        $frequencies = $this->frequencies();
+
+        $frequencies->daily();
+
+        $this->assertEquals($frequencies->expression,'0 0 * * *');
+    }
+
+    /** @test */
+    public function can_set_twice_daily()
+    {
+        $frequencies = $this->frequencies();
+
+        $frequencies->twiceDaily(3,7);
+
+        $this->assertEquals($frequencies->expression,'0 3,7 * * *');
+    }
+
+    /** @test */
+    public function can_set_twice_using_defaults()
+    {
+        $frequencies = $this->frequencies();
+
+        $frequencies->twiceDaily();
+
+        $this->assertEquals($frequencies->expression,'0 1,12 * * *');
+    }
+
+    // /** @test */
+    // public function can_set_every_thirty_minutes()
+    // {
+    //     $frequencies = $this->frequencies();
+    //
+    //     $frequencies->everyThirtyMinutes();
+    //
+    //     $this->assertEquals($frequencies->expression,'*/30 * * * *');
+    // }
+
     protected function frequencies()
     {
       $frequencies = $this->getMockForTrait(Frequencies::class);
