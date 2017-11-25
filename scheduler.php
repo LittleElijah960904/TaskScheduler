@@ -21,8 +21,8 @@ require_once 'vendor/autoload.php';
 
 $kernel = new Kernel;
 // $kernel->setDate(Carbon::create(2017, 10, 1, 0, 0, 0));
-$kernel->setDate(Carbon::now()->tz('Europe/London'));
+// $kernel->setDate(Carbon::now()->tz('Europe/London'));
 
-$kernel->add(new SomeEvent())->everyMinute();
+$kernel->add(new SomeEvent())->dailyAt();
 
 $kernel->run();

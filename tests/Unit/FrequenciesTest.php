@@ -288,6 +288,7 @@ class FrequenciesTest extends TestCase
         $frequencies->monthlyOn(10);
 
         $this->assertEquals($frequencies->expression,'0 0 10 * *');
+
     }
 
     // /** @test */
@@ -299,6 +300,17 @@ class FrequenciesTest extends TestCase
     //
     //     $this->assertEquals($frequencies->expression,'*/30 * * * *');
     // }
+
+    /** @test */
+    public function replacement_works_correctly()
+    {
+        $frequencies = $this->frequencies();
+
+        $frequencies->daily()->daily();
+
+        $this->assertEquals($frequencies->expression,'0 0 * * *');
+
+    }
 
     protected function frequencies()
     {
